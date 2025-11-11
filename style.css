@@ -1,0 +1,38 @@
+;
+}
+header {
+  background: #006699;
+  color: white;
+  padding: 1em 2em;
+}body {
+  font-fam3ily: 'Segoe UI', Arial, sans-serif;
+  background: #fafafa;
+  margin: 0;
+  color: #33
+header h1 {
+  margin: 0;
+}
+nav a {
+  color: white;
+  margin-right: 1em;
+  text-decoration: none;
+  font-weight: bold;
+}
+main {
+  padding: 2em;
+}
+article {
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.08);
+  margin-bottom: 1.5em;
+  padding: 1em;
+}
+footer {
+  text-align: center;
+  padding: 1em;
+  background: #eee;
+  color: #666;
+  position: sticky;
+  bottom: 0;
+}
