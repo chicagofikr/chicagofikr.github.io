@@ -1,10 +1,19 @@
-// Firebase config here...
+// Replace with your Firebase config
+const firebaseConfig = {
+  apiKey: "YOUR_API_KEY",
+  authDomain: "YOUR_PROJECT.firebaseapp.com",
+  projectId: "YOUR_PROJECT",
+  storageBucket: "YOUR_PROJECT.appspot.com",
+  messagingSenderId: "YOUR_SENDER_ID",
+  appId: "YOUR_APP_ID"
+};
+
 firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore();
 
 let map;
 let markers = [];
-let editId = null; // track which doc is being edited
+let editId = null;
 
 function loadMap() {
   document.getElementById("map").style.display = "block";
@@ -44,70 +53,4 @@ async function addAddress() {
     const lat = parseFloat(data[0].lat);
     const lon = parseFloat(data[0].lon);
 
-    const docRef = await db.collection("addresses").add({
-      name, address: fullAddress, lat, lon, status, visited, comment: "", timestamp: Date.now()
-    });
-
-    const marker = L.marker([lat, lon]).addTo(map)
-      .bindPopup(popupContent(docRef.id, name, fullAddress, status, visited, ""))
-      .openPopup();
-
-    markers.push(marker);
-    map.setView([lat, lon], 14);
-  } else {
-    alert("Address not found!");
-  }
-}
-
-async function loadSavedAddresses() {
-  const search = document.getElementById("search").value.toLowerCase();
-  const status = document.getElementById("status").value;
-  const visited = document.getElementById("visited").value;
-
-  const snapshot = await db.collection("addresses").get();
-  snapshot.forEach(doc => {
-    const data = doc.data();
-    const nameMatch = data.name?.toLowerCase().includes(search);
-    const addressMatch = data.address?.toLowerCase().includes(search);
-    const statusMatch = (status === "All" || data.status === status);
-    const visitedMatch = (visited === "All" || data.visited === visited);
-
-    if ((nameMatch || addressMatch) && statusMatch && visitedMatch) {
-      const marker = L.marker([data.lat, data.lon]).addTo(map)
-        .bindPopup(popupContent(doc.id, data.name, data.address, data.status, data.visited, data.comment || ""));
-      markers.push(marker);
-    }
-  });
-}
-
-function popupContent(id, name, address, status, visited, comment) {
-  return `
-    <b>${name}</b><br>${address}<br>
-    Status: ${status}<br>
-    Visited: ${visited}<br>
-    Comment: ${comment}<br>
-    <button onclick="openEditModal('${id}', '${name}', '${status}', '${visited}', '${comment}')">Edit</button>
-  `;
-}
-
-// Modal functions
-function openEditModal(id, name, status, visited, comment) {
-  editId = id;
-  document.getElementById("editName").value = name;
-  document.getElementById("editStatus").value = status;
-  document.getElementById("editVisited").value = visited;
-  document.getElementById("editComment").value = comment;
-  document.getElementById("editModal").style.display = "block";
-}
-
-function closeModal() {
-  document.getElementById("editModal").style.display = "none";
-}
-
-async function saveEdit() {
-  const newName = document.getElementById("editName").value;
-  const newStatus = document.getElementById("editStatus").value;
-  const newVisited = document.getElementById("editVisited").value;
-  const newComment = document.getElementById("editComment").value;
-
-  if (
+    const docRef = await db.collection("addresses").
