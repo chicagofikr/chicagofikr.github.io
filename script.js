@@ -8,9 +8,6 @@ const firebaseConfig = {
   appId: "YOUR_APP_ID"
 };
 
-firebase.initializeApp(firebaseConfig);
-const db = firebase.firestore();
-
 let map;
 let markers = [];
 let editId = null;
