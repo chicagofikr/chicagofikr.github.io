@@ -1,4 +1,4 @@
-// 🔑 Replace with your Firebase config from Firebase Console
+// 🔑 Replace with your Firebase config
 const firebaseConfig = {
   apiKey: "YOUR_API_KEY",
   authDomain: "YOUR_PROJECT.firebaseapp.com",
@@ -8,11 +8,11 @@ const firebaseConfig = {
   appId: "YOUR_APP_ID"
 };
 
-// Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore();
 
-let map; // global map object
+let map;
+let markers = [];
 
 function loadMap() {
   document.getElementById("map").style.display = "block";
@@ -30,19 +30,22 @@ function loadMap() {
       .bindPopup('Rahmat-e-Alam Foundation')
       .openPopup();
 
-    // Load saved addresses from Firestore
     loadSavedAddresses();
   }
 }
 
 async function addAddress() {
+  const name = document.getElementById("name").value;
   const address = document.getElementById("address").value;
-  if (!address) {
-    alert("Please enter an address!");
+  const apt = document.getElementById("apt").value;
+  const fullAddress = `${address} ${apt}`;
+
+  if (!name || !address) {
+    alert("Please enter name and address.");
     return;
   }
 
-  const url = `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(address)}`;
+  const url = `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(fullAddress)}`;
 
   try {
     const res = await fetch(url);
@@ -52,15 +55,16 @@ async function addAddress() {
       const lat = parseFloat(data[0].lat);
       const lon = parseFloat(data[0].lon);
 
-      L.marker([lat, lon]).addTo(map)
-        .bindPopup(address)
+      const marker = L.marker([lat, lon]).addTo(map)
+        .bindPopup(`<b>${name}</b><br>${fullAddress}`)
         .openPopup();
 
+      markers.push(marker);
       map.setView([lat, lon], 14);
 
-      // Save to Firestore
       await db.collection("addresses").add({
-        address: address,
+        name: name,
+        address: fullAddress,
         lat: lat,
         lon: lon,
         timestamp: Date.now()
@@ -70,7 +74,7 @@ async function addAddress() {
       alert("Address not found!");
     }
   } catch (err) {
-    alert("Error fetching location: " + err);
+    alert("Error: " + err);
   }
 }
 
@@ -78,7 +82,8 @@ async function loadSavedAddresses() {
   const snapshot = await db.collection("addresses").get();
   snapshot.forEach(doc => {
     const data = doc.data();
-    L.marker([data.lat, data.lon]).addTo(map)
-      .bindPopup(data.address);
+    const marker = L.marker([data.lat, data.lon]).addTo(map)
+      .bindPopup(`<b>${data.name}</b><br>${data.address}`);
+    markers.push(marker);
   });
 }
