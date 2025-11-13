@@ -9,65 +9,73 @@
   <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
 </head>
 <body>
-  <h1>Chicago Jowla Map</h1>
 
-  <!-- Filters -->
-  <div class="filters">
-    <input type="text" id="search" placeholder="Search by name or address" />
+  <!-- Header Bar -->
+  <div class="header-bar">
+    <a href="index.html" class="logo">CF</a>
+    <div class="header-title">Chicago Jowla Map</div>
+  </div>
 
-    <div class="filter-group">
-      <label for="status">Status</label>
-      <select id="status">
-        <option>All</option>
+  <div class="container">
+
+    <!-- Filters Card -->
+    <div class="card filters">
+      <input type="text" id="search" placeholder="Search by name or address" />
+
+      <div class="filter-group">
+        <label for="status">Status</label>
+        <select id="status">
+          <option>All</option>
+          <option>Students</option>
+          <option>Khususi</option>
+          <option>Follow Ups</option>
+          <option>3D</option>
+        </select>
+      </div>
+
+      <div class="filter-group">
+        <label for="visited">Visited</label>
+        <select id="visited">
+          <option>All</option>
+          <option>Not Yet Visited</option>
+          <option>More Than 180 Days</option>
+          <option>More Than 90 Days</option>
+          <option>More Than 30 Days</option>
+        </select>
+      </div>
+
+      <button onclick="loadMap()">Display Map</button>
+    </div>
+
+    <!-- Form Card -->
+    <div class="card form">
+      <h2>Enter New Address</h2>
+      <input type="text" id="name" placeholder="Name" />
+      <input type="text" id="address" placeholder="Address" />
+      <input type="text" id="apt" placeholder="Apt / Suite" />
+
+      <select id="newStatus">
+        <option disabled selected>Status</option>
         <option>Students</option>
         <option>Khususi</option>
         <option>Follow Ups</option>
         <option>3D</option>
       </select>
-    </div>
 
-    <div class="filter-group">
-      <label for="visited">Visited</label>
-      <select id="visited">
-        <option>All</option>
+      <select id="newVisited">
+        <option disabled selected>Visited</option>
         <option>Not Yet Visited</option>
         <option>More Than 180 Days</option>
         <option>More Than 90 Days</option>
         <option>More Than 30 Days</option>
       </select>
+
+      <button onclick="addAddress()">Add Address</button>
     </div>
 
-    <button onclick="loadMap()">Display Map</button>
+    <!-- Map -->
+    <div id="map" style="display:none;"></div>
   </div>
-
-  <!-- Address Form -->
-  <div class="form">
-    <h2>Enter New Address</h2>
-    <input type="text" id="name" placeholder="Name" />
-    <input type="text" id="address" placeholder="Address" />
-    <input type="text" id="apt" placeholder="Apt / Suite" />
-
-    <select id="newStatus">
-      <option disabled selected>Status</option>
-      <option>Students</option>
-      <option>Khususi</option>
-      <option>Follow Ups</option>
-      <option>3D</option>
-    </select>
-
-    <select id="newVisited">
-      <option disabled selected>Visited</option>
-      <option>Not Yet Visited</option>
-      <option>More Than 180 Days</option>
-      <option>More Than 90 Days</option>
-      <option>More Than 30 Days</option>
-    </select>
-
-    <button onclick="addAddress()">Add Address</button>
-  </div>
-
-  <!-- Map -->
-  <div id="map" style="display:none;"></div>
 
   <!-- Edit Modal -->
   <div id="editModal" class="modal">
@@ -82,14 +90,10 @@
     </div>
   </div>
 
-  <!-- Leaflet JS -->
+  <!-- Scripts -->
   <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-
-  <!-- Firebase SDK -->
   <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js"></script>
-
-  <!-- Script -->
   <script src="script.js"></script>
 </body>
 </html>
