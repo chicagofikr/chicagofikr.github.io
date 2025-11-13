@@ -11,19 +11,36 @@
 <body>
   <h1>Chicago Jowla Map</h1>
 
-  <!-- Display Map Button -->
-  <div class="controls">
+  <!-- Filters -->
+  <div class="filters">
+    <input type="text" id="search" placeholder="Search" />
+    <select id="status">
+      <option>All</option>
+      <option>Students</option>
+      <option>Khususi</option>
+      <option>Follow Ups</option>
+      <option>3D</option>
+    </select>
+    <select id="visited">
+      <option>All</option>
+      <option>Not Yet Visited</option>
+      <option>More Than 180 Days</option>
+      <option>More Than 90 Days</option>
+      <option>More Than 30 Days</option>
+    </select>
     <button onclick="loadMap()">Display Map</button>
   </div>
 
   <!-- Address Form -->
   <div class="form">
-    <h2>Add a New Address</h2>
-    <input type="text" id="address" placeholder="Enter address here" />
+    <h2>Enter New Address</h2>
+    <input type="text" id="name" placeholder="Name" />
+    <input type="text" id="address" placeholder="Address" />
+    <input type="text" id="apt" placeholder="Apt / Suite" />
     <button onclick="addAddress()">Add Address</button>
   </div>
 
-  <!-- Map Container (hidden until button is clicked) -->
+  <!-- Map -->
   <div id="map" style="display:none;"></div>
 
   <!-- Leaflet JS -->
@@ -33,7 +50,7 @@
   <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js"></script>
 
-  <!-- Link to JS -->
+  <!-- Script -->
   <script src="script.js"></script>
 </body>
 </html>
