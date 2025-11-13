@@ -10,12 +10,15 @@ h1 {
   color: #155724;
 }
 
-.controls, .form {
-  text-align: center;
+.filters, .form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
   margin-bottom: 20px;
 }
 
-input, button {
+input, select, button {
   padding: 10px;
   font-size: 16px;
 }
