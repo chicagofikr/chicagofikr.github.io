@@ -13,21 +13,30 @@
 
   <!-- Filters -->
   <div class="filters">
-    <input type="text" id="search" placeholder="Search" />
-    <select id="status">
-      <option>All</option>
-      <option>Students</option>
-      <option>Khususi</option>
-      <option>Follow Ups</option>
-      <option>3D</option>
-    </select>
-    <select id="visited">
-      <option>All</option>
-      <option>Not Yet Visited</option>
-      <option>More Than 180 Days</option>
-      <option>More Than 90 Days</option>
-      <option>More Than 30 Days</option>
-    </select>
+    <input type="text" id="search" placeholder="Search by name or address" />
+
+    <div class="filter-group">
+      <label for="status">Status</label>
+      <select id="status">
+        <option>All</option>
+        <option>Students</option>
+        <option>Khususi</option>
+        <option>Follow Ups</option>
+        <option>3D</option>
+      </select>
+    </div>
+
+    <div class="filter-group">
+      <label for="visited">Visited</label>
+      <select id="visited">
+        <option>All</option>
+        <option>Not Yet Visited</option>
+        <option>More Than 180 Days</option>
+        <option>More Than 90 Days</option>
+        <option>More Than 30 Days</option>
+      </select>
+    </div>
+
     <button onclick="loadMap()">Display Map</button>
   </div>
 
@@ -37,6 +46,23 @@
     <input type="text" id="name" placeholder="Name" />
     <input type="text" id="address" placeholder="Address" />
     <input type="text" id="apt" placeholder="Apt / Suite" />
+
+    <select id="newStatus">
+      <option disabled selected>Status</option>
+      <option>Students</option>
+      <option>Khususi</option>
+      <option>Follow Ups</option>
+      <option>3D</option>
+    </select>
+
+    <select id="newVisited">
+      <option disabled selected>Visited</option>
+      <option>Not Yet Visited</option>
+      <option>More Than 180 Days</option>
+      <option>More Than 90 Days</option>
+      <option>More Than 30 Days</option>
+    </select>
+
     <button onclick="addAddress()">Add Address</button>
   </div>
 
