@@ -14,8 +14,6 @@ let editId = null;
 
 function loadMap() {
   document.getElementById("map").style.display = "block";
-  const center = [42.0125, -87.6901];
-
   if (!map) {
     map = L.map('map').setView(center, 14);
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
