@@ -1,21 +1,36 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chicago Jowla Map Interface</title>
-    <link rel="stylesheet" href="style.css">
+  <title>Simple Leaflet Map</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Leaflet CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+
+  <style>
+    #map { height: 500px; width: 100%; }
+  </style>
 </head>
 <body>
+  <h1>My Simple Leaflet Map</h1>
+  <div id="map"></div>
 
-    <div class="container">
-        <h1>Chicago Jowla Map</h1>
+  <!-- Leaflet JS -->
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+  <script>
+    // Initialize the map
+    var map = L.map('map').setView([42.0125, -87.6901], 14);
 
-        <div class="section filter-section">
-            <input type="text" placeholder="Search" class="search-input">
-            
-            </div>
-    </div>
+    // Add OpenStreetMap tiles
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '© OpenStreetMap contributors'
+    }).addTo(map);
 
+    // Add a marker
+    L.marker([42.0125, -87.6901]).addTo(map)
+      .bindPopup('Rahmat-e-Alam Foundation')
+      .openPopup();
+  </script>
 </body>
 </html>
