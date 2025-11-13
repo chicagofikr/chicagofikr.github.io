@@ -69,6 +69,19 @@
   <!-- Map -->
   <div id="map" style="display:none;"></div>
 
+  <!-- Edit Modal -->
+  <div id="editModal" class="modal">
+    <div class="modal-content">
+      <h2>Edit Address</h2>
+      <input type="text" id="editName" placeholder="Name" />
+      <input type="text" id="editStatus" placeholder="Status" />
+      <input type="text" id="editVisited" placeholder="Visited" />
+      <textarea id="editComment" placeholder="Comment"></textarea>
+      <button onclick="saveEdit()">Save</button>
+      <button onclick="closeModal()">Cancel</button>
+    </div>
+  </div>
+
   <!-- Leaflet JS -->
   <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
 
