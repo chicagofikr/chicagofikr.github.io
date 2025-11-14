@@ -1,4 +1,26 @@
-// Replace with your Firebase config
+<script type="module">
+  // Import the functions you need from the SDKs you need
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-app.js";
+  import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-analytics.js";
+  // TODO: Add SDKs for Firebase products that you want to use
+  // https://firebase.google.com/docs/web/setup#available-libraries
+
+  // Your web app's Firebase configuration
+  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+  const firebaseConfig = {
+    apiKey: "AIzaSyAZjP1ZWgvtVmMmAU0NdWFAvukWBRllkrw",
+    authDomain: "jowla-map.firebaseapp.com",
+    projectId: "jowla-map",
+    storageBucket: "jowla-map.firebasestorage.app",
+    messagingSenderId: "302071875391",
+    appId: "1:302071875391:web:97731eefa9f00b3a73358a",
+    measurementId: "G-WN7KSNZ5D1"
+  };
+
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+  const analytics = getAnalytics(app);
+</script>
 const firebaseConfig = {
   apiKey: "YOUR_API_KEY",
   authDomain: "YOUR_PROJECT.firebaseapp.com",
